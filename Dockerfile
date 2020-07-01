@@ -1,6 +1,6 @@
 # MingW64 + Qt5 (optionally) for cross-compiling to Windows
 # Based on ArchLinux image
-ARG DOCKER_TAG=qt
+ARG DOCKER_TAG=latest
 
 FROM archlinux/base:latest as base
 MAINTAINER Mykola Dimura <mykola.dimura@gmail.com>
