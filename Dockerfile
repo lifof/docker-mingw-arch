@@ -15,7 +15,7 @@ RUN mkdir -p /workdir && chown devel.users /workdir
 RUN echo "Set disable_coredump false" >> /etc/sudo.conf
 
 RUN pacman -Syyu --noconfirm --noprogressbar 
-RUN paman -S systemd
+RUN pacman -S systemd
 
 # Clean services
 RUN (cd /lib/systemd/system/sysinit.target.wants/; for i in *; do [ $i == systemd-tmpfiles-setup.service ] || rm -f $i; done); \
