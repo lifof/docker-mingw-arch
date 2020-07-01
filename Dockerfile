@@ -134,10 +134,3 @@ RUN yay -Scc
 WORKDIR /workdir
 ONBUILD USER root
 ONBUILD WORKDIR /
-
-
-FROM ${DOCKER_TAG} as current
-USER devel
-WORKDIR /workdir
-ONBUILD USER root
-ONBUILD WORKDIR /
