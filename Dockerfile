@@ -7,7 +7,7 @@ MAINTAINER Mykola Dimura <mykola.dimura@gmail.com>
 
 # Create devel user...
 RUN useradd -m -d /home/devel -u 1000 -U -G users,tty -s /bin/bash devel
-RUN echo 'devel ALL=(ALL) NOPASSWD: /usr/sbin/pacman, /usr/sbin/makepkg' >> /etc/sudoers;
+RUN echo 'devel ALL=(ALL) NOPASSWD: ALL' >> /etc/sudoers;
 
 RUN mkdir -p /workdir && chown devel.users /workdir
 
@@ -20,7 +20,7 @@ RUN pacman -Syyu --noconfirm --noprogressbar
 RUN pacman -S --noconfirm --noprogressbar \
         imagemagick make git binutils \
         patch base-devel wget \
-        pacman-contrib expac nano openssh
+        pacman-contrib expac nano openssh gitlab-runner
 
 ENV EDITOR=nano
 
