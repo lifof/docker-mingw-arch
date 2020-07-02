@@ -17,16 +17,6 @@ RUN echo "Set disable_coredump false" >> /etc/sudo.conf
 RUN pacman -Syyu --noconfirm --noprogressbar 
 RUN pacman -S --noconfirm --noprogressbar systemd 
 
-# Clean services
-RUN (cd /lib/systemd/system/sysinit.target.wants/; for i in *; do [ $i == systemd-tmpfiles-setup.service ] || rm -f $i; done); \
-rm -f /lib/systemd/system/multi-user.target.wants/*;\
-rm -f /etc/systemd/system/*.wants/*;\
-rm -f /lib/systemd/system/local-fs.target.wants/*; \
-rm -f /lib/systemd/system/sockets.target.wants/*udev*; \
-rm -f /lib/systemd/system/sockets.target.wants/*initctl*; \
-rm -f /lib/systemd/system/basic.target.wants/*;\
-rm -f /lib/systemd/system/anaconda.target.wants/*; 
-
 # Add packages to the base system
 RUN pacman -S --noconfirm --noprogressbar \
         imagemagick make git binutils \
@@ -145,3 +135,6 @@ RUN yay -Scc
 WORKDIR /workdir
 ONBUILD USER root
 ONBUILD WORKDIR /
+
+# Now all you have to do is to run "gitlab-runner register"
+CMD ["gitlab-runner run --working-directory=/home/devel"]
